@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Floral Schools – Gallery</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background: #fdfdfd;
+            color: #222;
+        }
+
+        /* HEADER */
+        header {
+            background: #fff;
+            width: 100%;
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo {
+            font-size: 26px;
+            font-weight: 700;
+            color: #2e4a9e;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+        a {
+            text-decoration: none;
+            color: #222;
+        }
+        a:hover {
+            color: #2e4a9e;
+        }
+
+        /* HERO */
+        .hero {
+            height: 60vh;
+            background: url('group(1).jpg') center / cover no-repeat;
+            position: relative;
+            margin-top: 80px;
+        }
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,40,0.45);
+        }
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #fff;
+        }
+        .hero-content h1 {
+            font-size: 48px;
+            font-weight: 700;
+            animation: fadeDown 1.2s ease forwards;
+        }
+        @keyframes fadeDown {
+            from { opacity: 0; transform: translate(-50%, -70%); }
+            to   { opacity: 1; transform: translate(-50%, -50%); }
+        }
+
+        /* CAROUSEL */
+        .carousel-container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 60px auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .carousel {
+            display: flex;
+            transition: transform 0.8s ease;
+        }
+        .carousel img {
+            width: 100%;
+            height: 430px;
+            object-fit: cover;
+        }
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.4);
+            padding: 15px;
+            font-size: 22px;
+            color: #fff;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .arrow:hover {
+            background: rgba(0,0,0,0.7);
+        }
+        .left { left: 15px; }
+        .right { right: 15px; }
+
+        /* GALLERY GRID */
+        .section {
+            width: 90%;
+            margin: 60px auto;
+        }
+        .section h2 {
+            text-align: center;
+            font-size: 34px;
+            color: #2e4a9e;
+            margin-bottom: 30px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+        .grid img {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: 0.5s;
+            opacity: 0;
+            transform: scale(0.85);
+        }
+        .grid img:hover {
+            transform: scale(1.05);
+        }
+
+        /* ANIMATION */
+        .show {
+            opacity: 1 !important;
+            transform: scale(1) !important;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===== SECTIONED GALLERIES ===== */
+.gallery-section {
+    margin: 80px auto;
+    width: 90%;
+}
+
+.gallery-section h3 {
+    font-size: 28px;
+    color: #2e4a9e;
+    margin-bottom: 25px;
+    position: relative;
+    display: inline-block;
+}
+
+.gallery-section h3::after {
+    content: "";
+    width: 60%;
+    height: 3px;
+    background: #2e4a9e;
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+}
+
+/* Gallery Grid */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 18px;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    transform: translateY(50px) scale(.9);
+    opacity: 0;
+    transition: .8s cubic-bezier(.19,1,.22,1);
+}
+
+.gallery-item.show {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: .6s;
+}
+
+/* Hover Effect */
+.gallery-item:hover img {
+    transform: scale(1.15);
+}
+
+/* Overlay Text */
+.gallery-caption {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,.7), transparent);
+    display: flex;
+    align-items: flex-end;
+    padding: 15px;
+    color: #fff;
+    font-weight: 600;
+    opacity: 0;
+    transition: .5s;
+}
+
+.gallery-item:hover .gallery-caption {
+    opacity: 1;
+}
+
+/* Responsive */
+@media(max-width:900px){
+    .gallery-grid{
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+@media(max-width:550px){
+    .gallery-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+
+
+
+
+
+/* ===== SOCIAL MEDIA SECTION ===== */
+.social-section{
+    width:90%;
+    margin:90px auto 60px;
+    text-align:center;
+}
+
+.social-section h2{
+    font-size:32px;
+    color:#2e4a9e;
+    margin-bottom:10px;
+}
+
+.social-section p{
+    font-size:16px;
+    opacity:.85;
+    margin-bottom:35px;
+}
+
+.social-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.social-card{
+    background:#fff;
+    padding:35px 20px;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    transition:.6s cubic-bezier(.19,1,.22,1);
+    transform:translateY(40px) scale(.95);
+    opacity:0;
+}
+
+.social-card.show{
+    transform:translateY(0) scale(1);
+    opacity:1;
+}
+
+.social-card i{
+    font-size:45px;
+    margin-bottom:15px;
+}
+
+.social-card h4{
+    font-size:20px;
+    margin-bottom:6px;
+}
+
+.social-card span{
+    font-size:14px;
+    opacity:.8;
+}
+
+.social-card a{
+    display:inline-block;
+    margin-top:15px;
+    font-weight:600;
+    color:#2e4a9e;
+}
+
+/* Platform Colors */
+.facebook i{ color:#1877f2; }
+.instagram i{ color:#e1306c; }
+.twitter i{ color:#000; }
+
+/* Hover */
+.social-card:hover{
+    transform:translateY(-10px) scale(1.03);
+    box-shadow:0 18px 40px rgba(0,0,0,.15);
+}
+
+/* Responsive */
+@media(max-width:900px){
+    .social-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+@media(max-width:550px){
+    .social-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+footer{
+    background:#2e4a9e;
+    color:white;
+    padding:60px 10% 30px;
+}
+
+.footer-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:40px;
+}
+
+.footer-brand h2{
+    color:var(--accent);
+    margin-bottom:10px;
+}
+
+.footer-brand p{
+    font-size:14px;
+    line-height:1.6;
+    opacity:.85;
+}
+
+.footer-links h4{
+    margin-bottom:10px;
+}
+
+.footer-links ul{
+    list-style:none;
+}
+
+.footer-links ul li{
+    margin-bottom:8px;
+}
+
+.footer-links a{
+    color:#ddd;
+    text-decoration:none;
+    font-size:14px;
+}
+
+.footer-links a:hover{
+    color:#4fc3f7;
+}
+
+.social-icons{
+    display:flex;
+    gap:12px;
+    margin-top:15px;
+}
+
+.social-icons a{
+    width:38px;
+    height:38px;
+    display:grid;
+    place-items:center;
+    border-radius:50%;
+    background:rgba(255,255,255,.15);
+    color:#fff;
+    transition:.3s;
+}
+
+.social-icons a:hover{
+    background:#4fc3f7;
+    color:#000;
+    transform:translateY(-4px);
+}
+
+.footer-bottom{
+    text-align:center;
+    margin-top:40px;
+    border-top:1px solid rgba(255,255,255,.2);
+    padding-top:15px;
+    font-size:14px;
+    opacity:.85;
+}
+
+
+
+
+
+
+
+.back-home{
+    position:fixed;
+    top:25px;
+    left:25px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:12px 18px;
+    background:#2f8f4e;
+    color:#fff;
+    text-decoration:none;
+    font-weight:600;
+    border-radius:30px;
+    box-shadow:0 10px 25px rgba(0,0,0,.2);
+    transition:.3s ease;
+    z-index:1000;
+}
+
+.back-home i{
+    font-size:1rem;
+}
+
+.back-home:hover{
+    background:#256f3e;
+    transform:translateX(-5px);
+}
+
+/* Mobile optimization */
+@media(max-width:600px){
+    .back-home span{
+        display:none;
+    }
+    .back-home{
+        padding:12px;
+        border-radius:50%;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+        /* RESPONSIVE */
+        @media(max-width: 900px){
+            .grid {
+                grid-template-columns: repeat(2,1fr);
+            }
+            .hero-content h1 {
+                font-size: 34px;
+            }
+        }
+        @media(max-width: 550px){
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-content h1 {
+                font-size: 26px;
+            }
+        }
+    </style>
+
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <img src="florallogo.png">
+        The Floral Schools
+    </div>
+    <a href="index.html">||Back to Home</a>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+    <div class="hero-content">
+        <h1>Our School Gallery</h1>
+    </div>
+</div>
+
+<!-- CAROUSEL -->
+<div class="carousel-container">
+    <div class="carousel" id="carousel">
+        <img src="independence-news.jpg">
+        <img src="group(3).jpg">
+        <img src="group(2).jpg">
+        <img src="group(4).jpg">
+        <img src="group(5).jpg">
+        <img src="group(6).jpg">
+        <img src="images.jpeg">
+        <img src="download (4).jpeg">
+        <img src="banner2.jpeg">
+        <img src="download (8).jpeg">
+        <img src="group(8).jpg">
+        <img src="career(1).jpg">
+        <img src="career(3).jpg">
+        <img src="career(2).jpg">
+
+    </div>
+
+    <i class="fa-solid fa-chevron-left arrow left" id="prev"></i>
+    <i class="fa-solid fa-chevron-right arrow right" id="next"></i>
+</div>
+
+<!-- GRID SECTION -->
+<div class="section">
+    <h2>More Photos</h2>
+    <div class="grid" id="grid">
+        <img src="group(7).jpg">
+        <img src="group(5).jpg">
+        <img src="download (2).jpeg">
+        <img src="group(2).jpg">
+        <img src="group(6).jpg">
+        <img src="group(8).jpg">
+        <img src="grad(1).jpg">
+        <img src="group(1).jpg">
+    </div>
+</div>
+
+
+
+<!-- CAREER DAY -->
+<div class="gallery-section">
+    <h3>Career Day</h3>
+    <div class="gallery-grid">
+        <div class="gallery-item"><img src="career(1).jpg"><div class="gallery-caption">Career Talk</div></div>
+        <div class="gallery-item"><img src="career(2).jpg"><div class="gallery-caption">Professional Visit</div></div>
+        <div class="gallery-item"><img src="career(3).jpg"><div class="gallery-caption">Student Interaction</div></div>
+        <div class="gallery-item"><img src="career(4).jpg"><div class="gallery-caption">Inspiration Session</div></div>
+    </div>
+</div>
+
+<!-- GRADUATION -->
+<div class="gallery-section">
+    <h3>Graduation Ceremony</h3>
+    <div class="gallery-grid">
+        <div class="gallery-item"><img src="grad(1).jpg"><div class="gallery-caption">Graduation Day</div></div>
+        <div class="gallery-item"><img src="grad(2).jpg"><div class="gallery-caption">Graduation Feed</div></div>
+        <div class="gallery-item"><img src="grad(3).jpg"><div class="gallery-caption">Graduation Presentation</div></div>
+        <div class="gallery-item"><img src="grad(4).jpg"><div class="gallery-caption">Celebration</div></div>
+    </div>
+</div>
+
+<!-- SPORTS -->
+<div class="gallery-section">
+    <h3>Cultural Day</h3>
+    <div class="gallery-grid">
+        <div class="gallery-item"><img src="cultural(1).jpg"><div class="gallery-caption">Cultural spirit</div></div>
+        <div class="gallery-item"><img src="cultural(2).jpg"><div class="gallery-caption">Cultural Feed</div></div>
+        <div class="gallery-item"><img src="cultural(3).jpg"><div class="gallery-caption">Cultural vibe</div></div>
+        <div class="gallery-item"><img src="cultural(4).jpg"><div class="gallery-caption">Team Spirit</div></div>
+    </div>
+</div>
+
+<!-- SCHOOL EVENTS -->
+<div class="gallery-section">
+    <h3>School Events</h3>
+    <div class="gallery-grid">
+        <div class="gallery-item"><img src="event(1).jpg"><div class="gallery-caption">Cultural Day</div></div>
+        <div class="gallery-item"><img src="event(2).jpg"><div class="gallery-caption">School event</div></div>
+        <div class="gallery-item"><img src="event(3).jpg"><div class="gallery-caption">Election</div></div>
+        <div class="gallery-item"><img src="event(4).jpg"><div class="gallery-caption">Rhythm</div></div>
+    </div>
+</div>
+
+
+
+
+<!-- SOCIAL MEDIA -->
+<section class="social-section">
+    <h2>Connect With Us</h2>
+    <p>Follow Floral Schools Nigeria for updates, events, and school activities</p>
+
+    <div class="social-grid">
+        <div class="social-card facebook">
+            <i class="fab fa-facebook-f"></i>
+            <h4>Facebook</h4>
+            <span>@TheFloralSchools</span><br>
+            <a href="https://www.facebook.com/thefloralschools/" target="_blank">Visit Page</a>
+        </div>
+
+        <div class="social-card instagram">
+            <i class="fab fa-instagram"></i>
+            <h4>Instagram</h4>
+            <span>@thefloralschools</span><br>
+            <a href="https://www.instagram.com/the_floral_schools/" target="_blank">View Profile</a>
+        </div>
+
+        <div class="social-card twitter">
+            <i class="fab fa-tiktok"></i>
+            <h4>TIKTOK</h4>
+            <span>@FloralSchools</span><br>
+            <a href="https://www.tiktok.com/discover/the-floral-school-iju-ishaga-lagos" target="_blank">Follow Us</a>
+        </div>
+    </div>
+</section>
+
+
+
+<footer>
+    <div class="footer-grid">
+        <div class="footer-brand">
+            <h2>The Floral Schools</h2>
+            <p>Providing quality education with discipline and excellence.</p>
+
+            <div class="social-icons">
+                <a href="https://www.facebook.com/thefloralschools/"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/the_floral_schools/"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/discover/the-floral-school-iju-ishaga-lagos"><i class="fab fa-tiktok"></i></a>
+                <a href="https://wa.me/2348063470003" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-links">
+            <h4>School</h4>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#academics">Academics</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-links">
+            <h4>Explore</h4>
+            <ul>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-links">
+            <h4>Legal</h4>
+            <ul>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        © <span id="year"></span> The Floral Schoools. All rights reserved. <br>
+        Web engineered by Adebisi Oluwadarasimi.
+    </div>
+</footer>
+
+
+
+
+<script>
+/* CAROUSEL LOGIC */
+let index = 0;
+const carousel = document.getElementById("carousel");
+const images = carousel.querySelectorAll("img");
+const total = images.length;
+
+document.getElementById("next").onclick = () => move(1);
+document.getElementById("prev").onclick = () => move(-1);
+
+function move(step){
+    index = (index + step + total) % total;
+    carousel.style.transform = `translateX(-${index * 100}%)`;
+}
+
+setInterval(() => move(1), 4000);
+
+/* SCROLL-IN ANIMATION */
+const imgs = document.querySelectorAll(".grid img");
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            entry.target.classList.add("show");
+        }
+    });
+}, { threshold: 0.3 });
+
+imgs.forEach(img => observer.observe(img));
+
+
+
+
+
+
+
+
+
+
+
+/* SOCIAL SECTION ANIMATION */
+const socialCards = document.querySelectorAll(".social-card");
+
+const socialObserver = new IntersectionObserver(entries => {
+    entries.forEach((entry,i)=>{
+        if(entry.isIntersecting){
+            setTimeout(()=>{
+                entry.target.classList.add("show");
+            }, i * 150);
+        }
+    });
+},{threshold:.3});
+
+socialCards.forEach(card => socialObserver.observe(card));
+
+
+
+
+
+
+
+
+
+/* SECTION GALLERY ANIMATION */
+const galleryItems = document.querySelectorAll(".gallery-item");
+
+const galleryObserver = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+        if(entry.isIntersecting){
+            setTimeout(() => {
+                entry.target.classList.add("show");
+            }, i * 120); // staggered animation
+        }
+    });
+},{ threshold:0.25 });
+
+galleryItems.forEach(item => galleryObserver.observe(item));
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us | Floral Schools Nigeria</title>
+
+<!-- Google Font + Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root{
+    --primary:#2e4a9e;
+    --secondary:#f3b43f;
+    --dark:#1f2933;
+    --light:#f9fafb;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:var(--light);
+    color:#333;
+    line-height:1.7;
+}
+
+/* HERO */
+.hero{
+    background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+    url('career(1).jpg') center/cover no-repeat;
+    color:#fff;
+    padding:110px 20px;
+    text-align:center;
+}
+
+.hero h1{
+    font-size:3rem;
+}
+
+/* SECTIONS */
+section{
+    padding:80px 8%;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.section-title h2{
+    font-size:2.2rem;
+    color:var(--primary);
+}
+
+.section-title p{
+    color:#666;
+}
+
+/* GRID */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+}
+
+/* INFO CARDS */
+.card{
+    background:#fff;
+    padding:35px 25px;
+    border-radius:15px;
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
+    text-align:center;
+    transition:.4s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+.card i{
+    font-size:2.5rem;
+    color:var(--primary);
+    margin-bottom:15px;
+}
+
+/* FORM */
+.form-wrapper{
+    max-width:900px;
+    margin:auto;
+    background:#fff;
+    padding:45px;
+    border-radius:20px;
+    box-shadow:0 18px 40px rgba(0,0,0,.1);
+}
+
+form{
+    display:grid;
+    gap:20px;
+}
+
+input, textarea{
+    width:100%;
+    padding:14px 18px;
+    border-radius:10px;
+    border:1px solid #ddd;
+    font-size:1rem;
+}
+
+textarea{
+    resize:none;
+    height:140px;
+}
+
+input:focus, textarea:focus{
+    border-color:var(--primary);
+    outline:none;
+}
+
+button{
+    padding:15px;
+    background:var(--primary);
+    color:#fff;
+    border:none;
+    border-radius:30px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    background:#243b85;
+}
+
+/* MAP */
+.map{
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 18px 40px rgba(0,0,0,.1);
+}
+
+/* BACK HOME */
+.back-home{
+    position:fixed;
+    top:25px;
+    left:25px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:12px 18px;
+    background:var(--primary);
+    color:#fff;
+    text-decoration:none;
+    font-weight:600;
+    border-radius:30px;
+    box-shadow:0 10px 25px rgba(0,0,0,.2);
+    transition:.3s;
+    z-index:1000;
+}
+
+.back-home:hover{
+    transform:translateX(-5px);
+}
+
+@media(max-width:600px){
+    .back-home span{ display:none; }
+    .back-home{ padding:12px; border-radius:50%; }
+}
+
+/* REVEAL ANIMATION */
+.reveal{
+    opacity:0;
+    transform:translateY(40px);
+    transition:.8s ease;
+}
+
+.reveal.active{
+    opacity:1;
+    transform:none;
+}
+
+/* ===== SOCIAL MEDIA ===== */
+.social-section{
+    width:90%;
+    margin:90px auto 60px;
+    text-align:center;
+}
+
+.social-section h2{
+    font-size:32px;
+    color:var(--primary);
+}
+
+.social-section p{
+    margin-bottom:35px;
+    opacity:.85;
+}
+
+.social-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.social-card{
+    background:#fff;
+    padding:35px 20px;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    transition:.6s cubic-bezier(.19,1,.22,1);
+    transform:translateY(40px) scale(.95);
+    opacity:0;
+}
+
+.social-card.show{
+    transform:none;
+    opacity:1;
+}
+
+.social-card i{
+    font-size:45px;
+    margin-bottom:15px;
+}
+
+.social-card h4{
+    font-size:20px;
+}
+
+.social-card span{
+    font-size:14px;
+    opacity:.8;
+}
+
+.social-card a{
+    display:inline-block;
+    margin-top:15px;
+    font-weight:600;
+    color:var(--primary);
+}
+
+/* Platform colors */
+.facebook i{color:#1877f2;}
+.instagram i{color:#e1306c;}
+.twitter i{color:#000;}
+
+.social-card:hover{
+    transform:translateY(-10px) scale(1.03);
+    box-shadow:0 18px 40px rgba(0,0,0,.15);
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+    .social-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:550px){
+    .social-grid{grid-template-columns:1fr;}
+}
+@media(max-width:768px){
+    .hero h1{font-size:2.2rem;}
+    section{padding:60px 6%;}
+}
+</style>
+</head>
+
+<body>
+
+<a href="index.html" class="back-home">
+    <i class="fas fa-arrow-left"></i>
+    <span>Home</span>
+</a>
+
+<div class="hero">
+    <h1>Contact Floral Schools Nigeria</h1>
+    <p>We’re here to answer your questions and support your child’s journey</p>
+</div>
+
+<section>
+    <div class="section-title reveal">
+        <h2>Get In Touch</h2>
+        <p>Reach out to us through any of the channels below</p>
+    </div>
+
+    <div class="grid">
+        <div class="card reveal">
+            <i class="fas fa-location-dot"></i>
+            <h3>School Address</h3>
+            <p>20 Jas Ojo Avenue, Agege, Lagos</p>
+        </div>
+
+        <div class="card reveal">
+            <i class="fas fa-phone"></i>
+            <h3>Phone Number</h3>
+            <p>+234 806 347 0003</p>
+        </div>
+
+        <div class="card reveal">
+            <i class="fas fa-envelope"></i>
+            <h3>Email Address</h3>
+            <p>thefloralschool@yahoo.com</p>
+        </div>
+    </div>
+</section>
+
+<section class="social-section">
+    <h2 class="reveal">Connect With Us</h2>
+    <p class="reveal">Follow Floral Schools Nigeria for updates and events</p>
+
+    <div class="social-grid">
+        <div class="social-card facebook">
+            <i class="fab fa-facebook-f"></i>
+            <h4>Facebook</h4>
+            <span>@TheFloralSchools</span><br>
+            <a href="https://www.facebook.com/thefloralschools/" target="_blank">Visit Page</a>
+        </div>
+
+        <div class="social-card instagram">
+            <i class="fab fa-instagram"></i>
+            <h4>Instagram</h4>
+            <span>@thefloralschools</span><br>
+            <a href="https://www.instagram.com/the_floral_schools/" target="_blank">View Profile</a>
+        </div>
+
+        <div class="social-card twitter">
+            <i class="fab fa-tiktok"></i>
+            <h4>TikTok</h4>
+            <span>@FloralSchools</span><br>
+            <a href="https://www.tiktok.com/discover/the-floral-school-iju-ishaga-lagos" target="_blank">Follow Us</a>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="section-title reveal">
+        <h2>Send Us a Message</h2>
+    </div>
+
+    <div class="form-wrapper reveal">
+        <form>
+            <input type="text" placeholder="Full Name" required>
+            <input type="email" placeholder="Email Address" required>
+            <input type="tel" placeholder="Phone Number">
+            <textarea placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+</section>
+
+<section>
+    <div class="section-title reveal">
+        <h2>Our Location</h2>
+    </div>
+
+    <div class="map reveal">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d507274.7879150692!2d2.970679432761041!3d6.636455168607676!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b972215998673%3A0x4e4094bf7714c230!2sThe%20Floral%20School!5e0!3m2!1sen!2sng"
+        width="100%" height="400" style="border:0;" loading="lazy"></iframe>
+    </div>
+</section>
+
+
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/2348063470003" target="_blank" 
+   style="
+       position: fixed;
+       bottom: 20px;
+       right: 20px;
+       background-color: #25D366;
+       color: white;
+       border-radius: 50%;
+       width: 60px;
+       height: 60px;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       text-decoration: none;
+       box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+       font-size: 30px;
+       z-index: 1000;
+   ">
+   &#128172;
+</a>
+
+
+<script>
+const observer = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            entry.target.classList.add(
+                entry.target.classList.contains('social-card') ? 'show' : 'active'
+            );
+        }
+    });
+},{threshold:0.2});
+
+document.querySelectorAll('.reveal, .social-card')
+.forEach(el=>observer.observe(el));
+
+
+
+
+
+</script>
+
+</body>
+</html>
